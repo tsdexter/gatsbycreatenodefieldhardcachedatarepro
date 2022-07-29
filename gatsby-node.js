@@ -16,6 +16,25 @@ exports.onCreateNode = async ({
   })
 }
 
+exports.createSchemaCustomization = async ({ actions }) => {
+  const { createTypes, createFieldExtension } = actions
+  createFieldExtension({
+    name: `customizedTestField`,
+    extend() {
+      return {
+        resolve(source) {
+          return `${source.fields.testField}`
+        },
+      }
+    },
+  })
+  createTypes(`
+    type WpPost {
+      customizedTestField: String @customizedTestField
+    }`
+  )
+}
+
 /**
  * exports.createPages is a built-in Gatsby Node API.
  * It's purpose is to allow you to create pages for your site! 💡
