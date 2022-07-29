@@ -5,6 +5,17 @@ const chunk = require(`lodash/chunk`)
 // dd() will prettily dump to the terminal and kill the process
 // const { dd } = require(`dumper.js`)
 
+exports.onCreateNode = async ({
+  node,
+  actions: { createNodeField },
+}) => {
+  createNodeField({
+    node,
+    name: `testField`,
+    value: `testValue-${node.id}`,
+  })
+}
+
 /**
  * exports.createPages is a built-in Gatsby Node API.
  * It's purpose is to allow you to create pages for your site! 💡

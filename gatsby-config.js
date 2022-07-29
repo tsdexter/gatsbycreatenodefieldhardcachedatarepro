@@ -29,6 +29,9 @@ module.exports = {
         url:
           process.env.WPGRAPHQL_URL ||
           `https://wpgatsbydemo.wpengine.com/graphql`,
+        develop: {
+          hardCacheData: true
+        }
       },
     },
 
